@@ -3,9 +3,11 @@ package ro.z2h.controller;
 import ro.z2h.annotation.MyController;
 import ro.z2h.annotation.MyRequestMethod;
 import ro.z2h.domain.Department;
+import ro.z2h.service.DepartmentServiceImpl;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 /**
  * Created by Buli on 11/11/2014.
@@ -15,19 +17,21 @@ import java.util.LinkedHashSet;
 public class DepartmentController {
 
     @MyRequestMethod(urlPath = "/all")
-    public ArrayList<Department> getAllDepartments(){
-        ArrayList<Department> newList = new ArrayList<Department>();
+    public List<Department> getAllDepartments(){
+        List<Department> newList = new ArrayList<Department>();
 
-        Department department1 = new Department();
-        department1.setId(11L);
-        department1.setDepartmentName("Department_1");
-        newList.add(department1);
-
-        Department department = new Department();
-        department.setId(22L);
-        department.setDepartmentName("Department_2");
-        newList.add(department);
+        DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
+        newList = departmentService.getAllDepartments();
         return newList;
+    }
+
+    @MyRequestMethod(urlPath = "/one")
+    public Department getDepartmentById(Long id){
+        Department departmentFromDB = new Department();
+
+        DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
+        departmentFromDB = departmentService.getDepartmentById(id);
+        return departmentFromDB;
     }
 
 }

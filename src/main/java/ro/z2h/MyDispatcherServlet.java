@@ -1,9 +1,6 @@
 package ro.z2h;
 
-import com.sun.javafx.fxml.ParseTraceElement;
-import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.util.JSONPObject;
 import ro.z2h.annotation.MyController;
 import ro.z2h.annotation.MyRequestMethod;
 import ro.z2h.controller.DepartmentController;
@@ -21,11 +18,9 @@ import java.io.PrintWriter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 import java.text.ParseException;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * Created by Buli on 11/11/2014.
@@ -104,8 +99,9 @@ public class MyDispatcherServlet extends HttpServlet {
             Class newController = Class.forName(controllerName);
             Object appControllerInstance = newController.newInstance();
             Method newControllerMethod = newController.getMethod(mapValue.getMethodName());
-            Parameter[] newControllerMethodParameters = newControllerMethod.getParameters();
-            invoke = newControllerMethod.invoke(appControllerInstance,  newControllerMethodParameters);
+//            Parameter[] newControllerMethodParameters = newControllerMethod.getParameters();
+//            invoke = newControllerMethod.invoke(appControllerInstance,  newControllerMethodParameters);
+            invoke = newControllerMethod.invoke(appControllerInstance);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

@@ -7,4 +7,14 @@
 
     <!--Configurare servleti-->
 
+    <servlet>
+        <servlet-name>MyDispatcherServlet</servlet-name>
+        <servlet-class>ro.z2h.MyDispatcherServlet</servlet-class>
+        <description>Dispatcher for custom MVC framework</description>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyDispatcherServlet</servlet-name>
+        <url-pattern>/mvc/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>

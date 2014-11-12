@@ -4,21 +4,14 @@ import java.sql.*;
 import java.util.HashMap;
 
 /**
- * DatabaseManager.java
+ * Created by liviu.spiroiu on 11/3/14.
  */
 public class DatabaseManager {
-    public static Connection getConnection(String username, String password) {
+    public static Connection getConnection() {
 
-        Connection con = null;
-        try {
-            con = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@10.6.33.102:1521:orcl",
-                    username,
-                    password);
+        DatabaseConnection connection = DatabaseConnection.getInstance();
+        Connection con = connection.getConnection();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         return con;
     }

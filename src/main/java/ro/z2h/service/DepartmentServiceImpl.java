@@ -32,7 +32,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department getDepartmentById(Long id) {
+    public Department getDepartmentById(String idDepartment) {
         DepartmentDao newDepartmentDao = new DepartmentDao();
         Department departmentFromDB = new Department();
 
@@ -40,7 +40,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         Connection con = DBConnection.getConnection();
 
         try {
-            departmentFromDB = newDepartmentDao.getDepartmentById(con,id);
+            departmentFromDB = newDepartmentDao.getDepartmentById(con,Long.parseLong(idDepartment));
         } catch (SQLException e) {
             e.printStackTrace();
         }

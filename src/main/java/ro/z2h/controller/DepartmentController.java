@@ -26,11 +26,12 @@ public class DepartmentController {
     }
 
     @MyRequestMethod(urlPath = "/one")
-    public Department getDepartmentById(Long id){
+    public Department getDepartmentById(String idDepartment){
         Department departmentFromDB = new Department();
 
         DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
-        departmentFromDB = departmentService.getDepartmentById(id);
+        departmentFromDB = departmentService.getDepartmentById(idDepartment);
+
         return departmentFromDB;
     }
 

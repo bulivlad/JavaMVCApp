@@ -8,7 +8,7 @@
     </tr>
     <tr ng-repeat="employee in employees | orderBy:'employeeId'">
         <td>
-            {{employee.employeeId}}
+            {{employee.id}}
         </td>
         <td>
             {{employee.firstName}}
@@ -17,12 +17,12 @@
             {{employee.lastName}}
         </td>
         <td>
-            {{employee.departmentId.departmentName}}
+            {{employee.department.departmentName}}
         </td>
         <td>
-            <button type="button" class="btn btn-default" ng-click="viewEmployee(employee.employeeId)">View</button>
-            <button type="button" class="btn btn-default" ng-click="editEmployee(employee.employeeId)">Edit</button>
-            <button type="button" class="btn btn-default" ng-click="deleteEmployee(employee.employeeId)">Delete</button>
+            <button type="button" class="btn btn-default" ng-click="viewEmployee(employee.id)">View</button>
+            <button type="button" class="btn btn-default" ng-click="editEmployee(employee.id)">Edit</button>
+            <button type="button" class="btn btn-default" ng-click="deleteEmployee(employee.id)">Delete</button>
         </td>
     </tr>
 </table>

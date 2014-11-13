@@ -22,13 +22,13 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="departmentId">Department:</label>
-                        <p id="departmentId" class="form-control-static">{{employee.departmentId.departmentName}}</p>
+                        <p id="departmentId" class="form-control-static">{{employee.department.departmentName}}</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="manager">Manager:</label>
-                        <p id="manager" class="form-control-static">{{employee.managerId.firstName+' '+ employee.managerId.lastName}}</p>
+                        <p id="manager" class="form-control-static">{{employee.manager.firstName+' '+ employee.manager.lastName}}</p>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="job">Job:</label>
-                        <p id="job" class="form-control-static">{{employee.jobId.jobTitle+' salary:['+employee.jobId.minSalary+':'+employee.jobId.maxSalary+']'}}</p>
+                        <p id="job" class="form-control-static">{{employee.job.jobTitle+' salary:['+employee.job.minSalary+':'+employee.job.maxSalary+']'}}</p>
                     </div>
                 </div>
                 <div class="col-lg-6">

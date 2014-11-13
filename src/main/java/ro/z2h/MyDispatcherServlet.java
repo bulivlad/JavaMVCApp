@@ -18,7 +18,9 @@ import java.io.PrintWriter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 
@@ -39,6 +41,11 @@ public class MyDispatcherServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         /*Delegate to someone (an application controller)*/
         dispatchReply("POST", req, resp);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        dispatchReply("DELETE", req, resp);
     }
 
     private void dispatchReply(String httpMethod, HttpServletRequest req, HttpServletResponse resp){
@@ -84,7 +91,7 @@ public class MyDispatcherServlet extends HttpServlet {
         MethodAttributes mapValue = methodMap.get(pathInfo);
         String controllerName;
 
-        String id = req.getParameter("idEmployee");
+        //String id = req.getParameter("idEmployee");
 
 
         try {
@@ -98,10 +105,14 @@ public class MyDispatcherServlet extends HttpServlet {
         try {
             Class newController = Class.forName(controllerName);
             Object appControllerInstance = newController.newInstance();
-            Method newControllerMethod = newController.getMethod(mapValue.getMethodName());
-//            Parameter[] newControllerMethodParameters = newControllerMethod.getParameters();
-//            invoke = newControllerMethod.invoke(appControllerInstance,  newControllerMethodParameters);
-            invoke = newControllerMethod.invoke(appControllerInstance);
+            Method newControllerMethod = newController.getMethod(mapValue.getMethodName(),mapValue.getMethodParametersType());
+            Parameter[] newControllerMethodParameters = newControllerMethod.getParameters();
+            ArrayList<String> parametersValue = new ArrayList<>();
+            for (Parameter newControllerMethodParameter : newControllerMethodParameters) {
+                parametersValue.add(req.getParameter(newControllerMethodParameter.getName()));
+            }
+            invoke = newControllerMethod.invoke(appControllerInstance, (String[])parametersValue.toArray(new String[0]));
+//            invoke = newControllerMethod.invoke(appControllerInstance,id);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -140,6 +151,7 @@ public class MyDispatcherServlet extends HttpServlet {
                             hashMapValue.setControllerClass(aClass.getName());
                             hashMapValue.setMethodName(aClassMethod.getName());
                             hashMapValue.setMethodType(methodAnnotation.methodType());
+                            hashMapValue.setMethodParametersType(aClassMethod.getParameterTypes());
                             methodMap.put(((MyController) controllerAnnotation).urlPath() + methodAnnotation.urlPath(),hashMapValue);
                         }
                     }

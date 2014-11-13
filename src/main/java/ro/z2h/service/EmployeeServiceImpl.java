@@ -5,6 +5,7 @@ import ro.z2h.domain.Employee;
 import ro.z2h.utils.DatabaseConnection;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,18 +20,42 @@ public class EmployeeServiceImpl implements EmployeeService {
         ArrayList<Employee> employeeArrayList = null;
         DatabaseConnection newDatabaseConnection = DatabaseConnection.getInstance();
         Connection con = newDatabaseConnection.getConnection();
-        employeeArrayList = getEmployeeFromDao.getAllEmployees(con);
+        try {
+            employeeArrayList = getEmployeeFromDao.getAllEmployees(con);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return employeeArrayList;
     }
 
     @Override
-    public Employee findOneEmployee(Long id) {
+    public Employee findOneEmployee(String idEmployee) {
         EmployeeDao getEmployeeFromDao = new EmployeeDao();
 
         Employee employeeFromDB = new Employee();
         DatabaseConnection newDataBaseConnection = DatabaseConnection.getInstance();
         Connection con = newDataBaseConnection.getConnection();
-        employeeFromDB = getEmployeeFromDao.getEmployeeById(con, id);
-        return null;
+        try {
+            employeeFromDB = getEmployeeFromDao.getEmployeeById(con, Long.parseLong(idEmployee));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employeeFromDB;
+    }
+
+    @Override
+    public void deleteOneEmployee(String idEmployee) {
+        EmployeeDao getEmployeeFromDao = new EmployeeDao();
+        Employee employee = new Employee();
+        DatabaseConnection newDatabaseConnection = DatabaseConnection.getInstance();
+        Connection con = newDatabaseConnection.getConnection();
+
+        try {
+           employee = getEmployeeFromDao.getEmployeeById(con,Long.parseLong(idEmployee));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        getEmployeeFromDao.deleteEmployee(employee,con);
     }
 }

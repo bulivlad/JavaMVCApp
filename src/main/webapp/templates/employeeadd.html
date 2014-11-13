@@ -25,7 +25,7 @@
                         <div class="form-group">
                             <label for="departmentId">Department:</label>
                             <select id="departmentId" ng-model="employee.departmentId" class="form-control" required
-                                    ng-options="v as v.departmentName for v in departments">
+                                    ng-options="v as v.departmentName for v in department">
                             </select>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label for="manager">Manager:</label>
                             <select id="manager" ng-model="employee.managerId" class="form-control" required
-                                    ng-options="v as v.firstName+' '+ v.lastName for v in managers">
+                                    ng-options="v as v.firstName+' '+ v.lastName for v in manager">
                             </select>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="job">Job:</label>
                             <select id="job" ng-model="employee.jobId" class="form-control" required
-                                    ng-options="v as v.jobTitle+' salary:['+v.minSalary+':'+v.maxSalary+']' for v in jobs">
+                                    ng-options="v as v.jobTitle+' salary:['+v.minSalary+':'+v.maxSalary+']' for v in job">
                             </select>
                         </div>
                     </div>

@@ -1,9 +1,11 @@
 package ro.z2h.service;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import ro.z2h.dao.EmployeeDao;
 import ro.z2h.domain.Employee;
 import ro.z2h.utils.DatabaseConnection;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -57,5 +59,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
 
         getEmployeeFromDao.deleteEmployee(employee,con);
+    }
+
+    @Override
+    public String addOneEmployee() {
+
+        ObjectMapper newJson = new ObjectMapper();
+        String valueAsString = null;
+
+//        try {
+//            valueAsString = newJson.writeValueAsString();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        return valueAsString;
     }
 }

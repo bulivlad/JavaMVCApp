@@ -6,7 +6,7 @@
         <th>Department Name</th>
         <th>Actions</th>
     </tr>
-    <tr ng-repeat="employee in employees | orderBy:'employeeId'">
+    <tr ng-repeat="employee in employees | orderBy:'employee.id'">
         <td>
             {{employee.id}}
         </td>

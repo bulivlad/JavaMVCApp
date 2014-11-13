@@ -18,7 +18,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<Department> getAllDepartments() {
         DepartmentDao newDepartmentDao = new DepartmentDao();
-        List<Department> newDepartmentsList = new ArrayList<Department>();
+        ArrayList<Department> newDepartmentsList = null;
 
         DatabaseConnection DBConnection = DatabaseConnection.getInstance();
         Connection con = DBConnection.getConnection();

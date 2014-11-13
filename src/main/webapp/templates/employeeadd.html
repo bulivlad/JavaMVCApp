@@ -24,16 +24,16 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="departmentId">Department:</label>
-                            <select id="departmentId" ng-model="employee.departmentId" class="form-control" required
-                                    ng-options="v as v.departmentName for v in department">
+                            <select id="departmentId" ng-model="employee.department" class="form-control" required
+                                    ng-options="v as v.departmentName for v in departments">
                             </select>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="manager">Manager:</label>
-                            <select id="manager" ng-model="employee.managerId" class="form-control" required
-                                    ng-options="v as v.firstName+' '+ v.lastName for v in manager">
+                            <select id="manager" ng-model="employee.manager" class="form-control" required
+                                    ng-options="v as v.firstName+' '+ v.lastName for v in managers">
                             </select>
                         </div>
                     </div>
@@ -43,8 +43,8 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="job">Job:</label>
-                            <select id="job" ng-model="employee.jobId" class="form-control" required
-                                    ng-options="v as v.jobTitle+' salary:['+v.minSalary+':'+v.maxSalary+']' for v in job">
+                            <select id="job" ng-model="employee.job" class="form-control" required
+                                    ng-options="v as v.jobTitle+' salary:['+v.minSalary+':'+v.maxSalary+']' for v in jobs">
                             </select>
                         </div>
                     </div>

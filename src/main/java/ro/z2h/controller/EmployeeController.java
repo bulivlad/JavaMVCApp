@@ -1,11 +1,13 @@
 package ro.z2h.controller;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import ro.z2h.annotation.MyController;
 import ro.z2h.annotation.MyRequestMethod;
 import ro.z2h.domain.Employee;
 import ro.z2h.service.EmployeeService;
 import ro.z2h.service.EmployeeServiceImpl;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -51,6 +53,13 @@ public class EmployeeController{
         EmployeeServiceImpl deleteEmployee = new EmployeeServiceImpl();
 
         deleteEmployee.deleteOneEmployee(idEmployee);
+    }
+
+    @MyRequestMethod(urlPath = "/create", methodType = "PUT")
+    public String addOneEmployee(){
+        EmployeeServiceImpl createNewEmployee = new EmployeeServiceImpl();
+
+        return createNewEmployee.addOneEmployee();
     }
 
 }

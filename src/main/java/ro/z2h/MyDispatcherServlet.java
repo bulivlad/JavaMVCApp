@@ -32,6 +32,15 @@ public class MyDispatcherServlet extends HttpServlet {
     private Object controlere;
 
     @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //req.getParameter()
+        Object reply = dispatch(req,resp);
+
+
+        reply(reply,req,resp);
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         /*Delegate to someone (an application controller)*/
         dispatchReply("GET", req, resp);

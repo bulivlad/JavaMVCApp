@@ -10,6 +10,8 @@
     <properties>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <jackson-jaxrs.version>1.9.13</jackson-jaxrs.version>
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <java.version>1.8</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -40,6 +42,17 @@
     <build>
         <finalName>MVCApp</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <compilerArgument>-parameters</compilerArgument>
+                    <testCompilerArgument>-parameters</testCompilerArgument>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
